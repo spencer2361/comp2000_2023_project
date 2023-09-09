@@ -1,4 +1,5 @@
 public class ItemReader {
+    private static final int DEF_EXPIRATION= -1;
 	/**
 	 * itemData format: {ITEM NAME}, {DESCRIPTION}, {VALUE}, {EXPIRATION IF EXPIRES}
 	 * index:                0             1           2               3
@@ -18,7 +19,17 @@ public class ItemReader {
         
         // You may modify the below
         
-        int expiration = -1;
+        // Modifying the code:
+        // Fix the : Magic Numbers **DONE**
+// I have used the final keyword to created a constant integer, with a meaninigful name, allowing me
+//  to change expiration in a  single place in the future if needed.
+
+ // Fix the : Null Return **DONE**
+ // I have thrown an  Illegal Argumention Exeception in the case that an item which isn't listed is found.
+
+
+        int expiration = DEF_EXPIRATION;
+        
         if (!expiry.isEmpty()) {
             expiration = Integer.valueOf(expiry);
         }
@@ -29,9 +40,7 @@ public class ItemReader {
         } else if (name.equals("Wand")) {
             return new Wand(expiration);
         } else {
-            System.err.println("Bad Item read in ItemReader");
-            System.exit(0);
-            return null;
+           throw new IllegalArgumentException("Unknown Item:"+name);
         }
     }
 }
