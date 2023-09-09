@@ -40,7 +40,7 @@ public class ItemReader {
         } else if (name.equals("Wand")) {
             return new Wand(expiration);
         } else {
-           throw new IllegalArgumentException("Unknown Item:"+name);
+           throw new IllegalArgumentException("Unknown Item:"+name+" "+value+" "+description+".");
         }
     }
 }

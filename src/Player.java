@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends Person {
     private String name;
     private Inventory inventory;
     private double money;
@@ -24,7 +24,7 @@ public class Player {
         if (Double.valueOf(item.getInventoryTableRow().getColumnThree().trim()) > money) {
             return;
         }
-        inventory.addOne(item);
+        super.addItem(item);
         money -= Double.valueOf(item.getInventoryTableRow().getColumnThree().trim());
     }
 
@@ -35,7 +35,7 @@ public class Player {
      * @param itemName
      */
     public ItemInterface sell(String itemName) {
-        ItemInterface i = removeItem(itemName);
+        ItemInterface i = super.removeItem(itemName);
         if (i != null) {
             money += Double.valueOf(i.getInventoryTableRow().getColumnThree().trim());
             return i;

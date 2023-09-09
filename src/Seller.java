@@ -1,10 +1,6 @@
-public class Seller {
-    private String name;
-    private Inventory inventory;
-
+public class Seller extends Person {
     public Seller(String storeName, Inventory startingInventory) {
-        name = storeName;
-        inventory = startingInventory;
+        super(storeName, startingInventory);
     }
 
     /**
@@ -12,7 +8,7 @@ public class Seller {
      * the item will always be "bought".
      */
     public void buy(ItemInterface item) {
-        inventory.addOne(item);
+        super.addItem(item);
     }
 
     /**
@@ -21,37 +17,34 @@ public class Seller {
      * @param itemName
      * @return The sold item.
      */
+    // Inorder to remove the Null values, I will use optional so that it isn't selectively searching for a null value, I can
     public ItemInterface sell(String itemName) {
-        ItemInterface result = removeItem(itemName);
-        if (result != null) {
-            return result;
-        }
-        return null;
+       super.removeItem(itemName);
     }
 
-    /**
-     * Adds an item to the held Inventory.
-     * @param item
-     */
-    public void addItem(ItemInterface item) {
-        inventory.addOne(item);
-    }
+    // /**
+    //  * Adds an item to the held Inventory.
+    //  * @param item
+    //  */
+    // public void addItem(ItemInterface item) {
+    //     inventory.addOne(item);
+    // }
 
-    /**
-     * Removes and returns an item from the held Inventory that matches
-     * the `itemName` parameter.
-     * @param itemName
-     */
-    public ItemInterface removeItem(String itemName) {
-        return inventory.removeOne(itemName);
-    }
+    // /**
+    //  * Removes and returns an item from the held Inventory that matches
+    //  * the `itemName` parameter.
+    //  * @param itemName
+    //  */
+    // public ItemInterface removeItem(String itemName) {
+    //     return inventory.removeOne(itemName);
+    // }
     
-    public Inventory getInventory() {
-        return inventory;
-    }
+    // public Inventory getInventory() {
+    //     return inventory;
+    // }
 
-    public String getName() {
-        return name;
-    }
+    // public String getName() {
+    //     return name;
+    // }
     
 }
